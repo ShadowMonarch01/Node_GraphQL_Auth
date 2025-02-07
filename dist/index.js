@@ -2,23 +2,23 @@ import express from "express";
 import cors from "cors";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { typeDefs } from './schema.js';
 import { resolvers } from "./resolvers.js";
 import { verifyToken } from "./auth.js";
+import connectDB from "./db.js";
 dotenv.config();
 // Connect to MongoDB
-const connectDB = async () => {
-    try {
-        await mongoose.connect(process.env.MONGO_URI);
-        console.log("✅ MongoDB connected!");
-    }
-    catch (error) {
-        console.error("❌ MongoDB connection error:", error);
-        process.exit(1);
-    }
-};
+// const connectDB = async () => {
+//   try {
+//     await mongoose.connect(process.env.MONGO_URI as string);
+//     console.log("✅ MongoDB connected!");
+//   } catch (error) {
+//     console.error("❌ MongoDB connection error:", error);
+//     process.exit(1);
+//   }
+// };
 connectDB();
 const app = express();
 app.use(cors());
